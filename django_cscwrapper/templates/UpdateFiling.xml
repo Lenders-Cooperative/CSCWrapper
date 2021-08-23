@@ -1,0 +1,99 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eser="http://eservices.cscfinancialonline.com/">
+    <soap:Header />
+    <soap:Body>
+        <UpdateFiling xmlns="https://eservices.cscfinancialonline.com/">
+            <params>
+                <param name="loginGuid">{{ guid }}</param>
+                <param name="contactNo">{{ contact_no }}</param>
+                <param name="orderID">{{ order_id }}</param>
+                <param name="xmlFiling">
+                    <Document xmlns="">
+                        <Header>
+                            <Filer>
+                                <Names>
+                                    <OrganizationName />
+                                    <MailAddress />
+                                    <City />
+                                    <State />
+                                    <PostalCode />
+                                </Names>
+                                <ClientAccountNum>{{ filer_client_account_num|default_if_none:"" }}</ClientAccountNum>
+                                <ContactName>{{ filer_contact_name|default_if_none:"" }}</ContactName>
+                                <ContactPhone>{{ filer_contact_phone|default_if_none:"" }}</ContactPhone>
+                                <ContactEmail>{{ filer_contact_email|default_if_none:"" }}</ContactEmail>
+                                <ContactFax>{{ filer_contact_fax|default_if_none:"" }}</ContactFax>
+                            </Filer>
+                        </Header>
+                        <Record>
+                            <SeqNumber />
+                            <TransType Type="Initial" />
+                            <Diligenz>
+                                <References>
+                                    {% for reference in references %}
+                                    <ReferenceField Index="No">
+                                        <ReferenceFieldName>{{ reference.name|default_if_none:"" }}</ReferenceFieldName>
+                                        <ReferenceFieldValue>{{ reference.value|default_if_none:"" }}</ReferenceFieldValue>
+                                    </ReferenceField>
+                                    {% endfor %}
+                                </References>
+                                <FilingJurisdiction>
+                                    <State>{{ filing_jurisdiction_state|default_if_none:"" }}</State>
+                                    <JurisdictionName>{{ filing_jurisdiction_name|default_if_none:"" }}</JurisdictionName>
+                                    <JurisdictionID>{{ filling_jurisdiction_id|default_if_none:"" }}</JurisdictionID>
+                                </FilingJurisdiction>
+                                <ContactName />
+                            </Diligenz>
+                            <SubmitterRef>{{ submitter_reference|default_if_none:"" }}</SubmitterRef>
+                            <SearchToReflect />
+                            <STRCertified />
+                            <StrDocuments />
+                            <StrUpdatedFrom />
+                            <Debtors>
+                                {% for debtor in debtors %}
+                                    <DebtorName>
+                                        <Names>
+                                            {% if debtor.first_name == None and debtor.organization_name != None %}
+                                                <OrganizationName>{{ debtor.organization_name|default_if_none:"" }}</OrganizationName>
+                                            {% else %}
+                                                <IndividualName>
+                                                    <LastName>{{ debtor.last_name|default_if_none:"" }}</LastName>
+                                                    <FirstName>{{ debtor.first_name|default_if_none:"" }}</FirstName>
+                                                    <MiddleName>{{ debtor.middle_name|default_if_none:"" }}</MiddleName>
+                                                    <Suffix>{{ debtor.suffix|default_if_none:"" }}</Suffix>
+                                                </IndividualName>
+                                            {% endif %}
+                                            <MailAddress>{{ debtor.mailing_address|default_if_none:"" }}</MailAddress>
+                                            <City>{{ debtor.city|default_if_none:"" }}</City>
+                                            <State>{{ debtor.state|default_if_none:"" }}</State>
+                                            <PostalCode>{{ debtor.postal_code|default_if_none:"" }}</PostalCode>
+                                            <County />
+                                            <Country>{{ debtor.country|default_if_none:"" }}</Country>
+                                            <OrganizationalType Type="NOType">{{ debtor.organization_type|default_if_none:"" }}</OrganizationalType>
+                                            <OrganizationalJuris>{{ debtor.organization_jurisdiction|default_if_none:"" }}</OrganizationalJuris>
+                                            <OrganizationalID>{{ debtor.organization_id|default_if_none:"" }}</OrganizationalID>
+                                        </Names>
+                                    </DebtorName>
+                                {% endfor %}
+                            </Debtors>
+                            <Secured>
+                                <SecuredName>
+                                    <Names>
+                                        <OrganizationName>{{ secured_name_organization_name|default_if_none:"" }}</OrganizationName>
+                                        <MailAddress>{{ secured_name_organization_mailing_address }}</MailAddress>
+                                        <City>{{ secured_name_organization_city }}</City>
+                                        <State>{{ secured_name_organization_state }}</State>
+                                        <PostalCode>{{ secured_name_organization_postal|default_if_none:"" }}</PostalCode>
+                                        <Country>{{ secured_name_organization_country|default_if_none:"" }}</Country>
+                                    </Names>
+                                </SecuredName>
+                            </Secured>
+                            <Collateral>
+                                <ColText>{{ col_text|default_if_none:"" }}</ColText>
+                            </Collateral>
+                        </Record>
+                    </Document>
+                </param>
+            </params>
+        </UpdateFiling>
+    </soap:Body>
+</soap:Envelope>

@@ -1,6 +1,6 @@
 
 from requests.sessions import OrderedDict
-from djangosoap.utils.SOAPHandlerBase import SOAPHandlerBase
+from django_soap.utils.SOAPHandlerBase import SOAPHandlerBase
 from enum import Enum
 from django.db.models.query import QuerySet
 import os

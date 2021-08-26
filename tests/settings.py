@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_cscwrapper',
-    'djangosoap'
+    'django_soap'
     
 
     # if your app has other dependencies that need to be added to the site

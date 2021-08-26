@@ -13,8 +13,8 @@ class TestsCSCWrapper(TestCase):
     def setUp(self):
         # NOTE: add credentials here
         self.soap_handler = CSCWrapper(
-            guid=...,
-            contact_no=...,
+            guid="PUT YOUR GUID HERE",
+            contact_no="PUT YOUR CONTACT REF HERE",
             url="https://eservices-test.cscfinancialonline.com/"
         )
         self.soap_handler.headers = {

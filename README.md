@@ -45,34 +45,22 @@ pip install django-cscwarpper
 ## Running Tests
 
 ```
-python manage.py test
+pytest
 ```
 
 ## Usage
-
-In order to use the system you must add djangosoap to your installed apps in your settings.py file.
-
-```python
-INSTALLED_APPS = [
-    'django_cscwrapper'
-]
-```
 
 Example usage of the CSC client:
 
 ```python
 client = CSCWrapper(
-    guid=...,
-    contact_no=...,
-    url="https://eservices-test.cscfinancialonline.com/"
-    headers={
-        'content-type': 'text/xml'
-    }
+    "https://eservices-test.cscfinancialonline.com/",
+    "guid",
+    "contact_no"
 )
 
 r = client.get_jurisdictions('TX')
-print(r.status_code)
-print(r.value)
+print(r)
 ```
 
 More examples can be viewed under `/tests/test_csc_wrapper.py`
@@ -124,11 +112,3 @@ the results.
     instantly. Instead, an order is created and submitted for CSC to fulfill. 
 
 NB, you can check the tests to see what the functions require for building the XML envelope.
-
-## Built Using
-
-- [Django](https://www.djangoproject.com/) - Web Framework
-- [Cookiecutter Django Package](https://github.com/pydanny/cookiecutter-djangopackage) - Cookie Cutter Django Package
-
-## Authors
-- [Stephen](https://github.com/sal-git) - Working on behalf of Lender's Cooperative

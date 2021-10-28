@@ -1,3 +1,0 @@
-
-# Additional requirements go here
-django-soap==0.1.1

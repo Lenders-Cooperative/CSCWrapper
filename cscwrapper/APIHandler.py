@@ -3,7 +3,7 @@ import requests
 from .consts import LOGGING_CONFIG
 
 logging.config.dictConfig(LOGGING_CONFIG)
-LOGGER = logging.getLogger("csc-wrapper")
+LOGGER = logging.getLogger("cscwrapper")
 
 
 class APIHandler:
@@ -41,7 +41,6 @@ class APIHandler:
         try:
             if log_config:
                 log_entry = log_config["model"](
-                    sba_number=log_config["sba_number"],
                     requested_by=log_config["user"],
                     request_url=f"{method}: {self._host}",
                     request_headers=self._headers,

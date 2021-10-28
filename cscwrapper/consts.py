@@ -1,4 +1,7 @@
 from enum import Enum
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # TODO implement these constants on search
 class SEARCHTYPE(Enum):
@@ -55,10 +58,6 @@ class OfflineSearchRules(Enum):
         'last_action_filed'
     ]
 
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent
-
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": True,
@@ -77,7 +76,7 @@ LOGGING_CONFIG = {
         },
     },
     "loggers": {
-        "csc-wrapper": {
+        "cscwrapper": {
             "handlers": ["development"],
             "level": "DEBUG",
             "propagate": False,

@@ -1,17 +1,12 @@
-<h1 align="center">Django CSC Wrapper</h1>
+<h1 align="center">CSC Wrapper</h1>
 
 <div align="center">
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/Lenders-Cooperative/django-password-history)](https://github.com/Lenders-Cooperative/django-password-history/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/Lenders-Cooperative/django-password-history/pulls)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 </div>
 
 ---
 
-<p align="center"> A wrapper for an the CSC XML Service to be used with Django. 
+<p align="center"> A wrapper for an the CSC XML Service. 
     <br> 
 </p>
 
@@ -25,21 +20,10 @@
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgements)
 
-## About
-
-This Django app provides XML envelopes for https://eservices-test.cscfinancialonline.com/ it relies on Django-SOAP. 
-## Getting Started
-
-Follow these instructions to install and setup django-soap in your django project.
-
-### Prerequisites
-
-This package relies on `Django-SOAP`
-
 ### Installing
 
 ```
-pip install django-cscwarpper
+pip install cscwarpper
 ```
 
 ## Running Tests

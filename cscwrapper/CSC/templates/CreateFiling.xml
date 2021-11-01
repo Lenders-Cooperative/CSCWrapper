@@ -41,6 +41,12 @@
                                 </FilingJurisdiction>
                                 <ContactName />
                             </Diligenz>
+                            {% if fl_stamp_tax is defined %}
+                                <FLStampTax Tax={{ fl_stamp_tax }}/>
+                            {% endif %}
+                            {% if indebtedness_amount is defined %}
+                                <IndebtednessAmount>{{ indebtedness_amount }}<IndebtednessAmount>
+                            {% endif %}
                             <SubmitterRef>{{ submitter_reference }}</SubmitterRef>
                             <SearchToReflect />
                             <STRCertified />
@@ -66,6 +72,9 @@
                                             <PostalCode>{{ debtor.postal_code }}</PostalCode>
                                             <County />
                                             <Country>{{ debtor.country }}</Country>
+                                            {% if debtor.tax_id is defined %}
+                                                <TaxID>{{ debtor.tax_id }}</TaxID>
+                                            {% endif %}
                                             <OrganizationalType Type="NOType">{{ debtor.organization_type }}</OrganizationalType>
                                             <OrganizationalJuris>{{ debtor.organization_jurisdiction }}</OrganizationalJuris>
                                             <OrganizationalID>{{ debtor.organization_id }}</OrganizationalID>

@@ -42,10 +42,10 @@
                                 <ContactName />
                             </Diligenz>
                             {% if fl_stamp_tax is defined %}
-                                <FLStampTax Tax={{ fl_stamp_tax }}/>
+                                <FLStampTax Tax="{{ fl_stamp_tax }}"/>
                             {% endif %}
                             {% if indebtedness_amount is defined %}
-                                <IndebtednessAmount>{{ indebtedness_amount }}<IndebtednessAmount>
+                                <IndebtednessAmount>{{ indebtedness_amount }}</IndebtednessAmount>
                             {% endif %}
                             <SubmitterRef>{{ submitter_reference }}</SubmitterRef>
                             <SearchToReflect />

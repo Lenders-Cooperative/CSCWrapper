@@ -1,5 +1,7 @@
 import logging.config
+
 import requests
+
 from .consts import LOGGING_CONFIG
 
 logging.config.dictConfig(LOGGING_CONFIG)
@@ -7,7 +9,7 @@ LOGGER = logging.getLogger("cscwrapper")
 
 
 class APIHandler:
-    REQUEST_TIMEOUT = 60 # Note: online searches take some time
+    REQUEST_TIMEOUT = 60  # Note: online searches take some time
 
     def __init__(
         self,
@@ -93,4 +95,6 @@ class APIHandler:
                     self._host,
                 )
 
-            raise Exception(f"Failed to get success response from CSC. Response: [{response.text}]") from excp
+            raise Exception(
+                f"Failed to get success response from CSC. Response: [{response.text}]"
+            ) from excp

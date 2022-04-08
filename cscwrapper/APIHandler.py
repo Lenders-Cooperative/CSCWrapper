@@ -1,4 +1,5 @@
 import logging.config
+from datetime import datetime
 
 import requests
 
@@ -35,21 +36,24 @@ class APIHandler:
             if (
                 "model" not in log_config
                 or "user" not in log_config
-                or "sba_number" not in log_config
                 or "timezone" not in log_config
             ):
                 raise Exception("Invalid log dict")
 
+            logging_model = log_config.pop("model")
+            requested_by = log_config.pop("user")
+            request_time = log_config.pop("timezone", datetime)
+
+            log_entry = logging_model(
+                requested_by=requested_by,
+                request_url=f"{method}: {self._host}",
+                request_headers=self._headers,
+                request_body=payload,
+                request_time=request_time.now(),
+                **log_config,
+            )
+
         try:
-            if log_config:
-                log_entry = log_config["model"](
-                    sba_number=log_config["sba_number"],
-                    requested_by=log_config["user"],
-                    request_url=f"{method}: {self._host}",
-                    request_headers=self._headers,
-                    request_body=payload,
-                    request_time=log_config["timezone"].now(),
-                )
 
             response = requests.request(
                 method,

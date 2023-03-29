@@ -3,24 +3,24 @@ from datetime import datetime
 
 import requests
 
-from .consts import LOGGING_CONFIG
+from .consts import LOGGING_CONFIG, DEFAULT_TIMEOUT
 
 logging.config.dictConfig(LOGGING_CONFIG)
 LOGGER = logging.getLogger("cscwrapper")
 
 
 class APIHandler:
-    REQUEST_TIMEOUT = 60  # Note: online searches take some time
-
     def __init__(
         self,
         host: str,
         headers: dict,
         logging: bool = True,
+        timeout: int = DEFAULT_TIMEOUT,
     ):
         self._host = host
         self._headers = headers
         self.__logging = logging
+        self.REQUEST_TIMEOUT = timeout  # Note: online searches take some time
 
     @property
     def host(self):

@@ -23,7 +23,7 @@
 ### Installing
 
 ```
-pip install cscwarpper
+pip install cscwrapper
 ```
 
 ## Running Tests

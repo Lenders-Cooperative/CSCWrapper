@@ -1,10 +1,7 @@
-import os
-from enum import Enum
-
 import xmltodict
 from jinja2 import Environment, PackageLoader, select_autoescape
 from requests.sessions import OrderedDict
-
+from .consts import DEFAULT_TIMEOUT
 from cscwrapper.APIHandler import APIHandler
 
 env = Environment(
@@ -17,13 +14,12 @@ class CSCWrapper(APIHandler):
 
     headers = {"content-type": "text/xml"}
 
-    def __init__(self, host, guid, contact_no, logging=True):
+    def __init__(self, host, guid, contact_no, logging=True, timeout=DEFAULT_TIMEOUT):
         self.__guid = guid
         self.__contact_no = contact_no
+        self.REQUEST_TIMEOUT = timeout
         self._api_handler = APIHandler(
-            host,
-            headers=self.headers,
-            logging=logging,
+            host, headers=self.headers, logging=logging, timeout=self.REQUEST_TIMEOUT
         )
 
     def create_filing(self, filing: dict, log_config: dict = None, *args, **kwargs):
@@ -70,10 +66,7 @@ class CSCWrapper(APIHandler):
     def get_changed_orders(
         self, status, from_date, log_config: dict = None
     ) -> OrderedDict:
-        params = {
-            "status": status,
-            "from_date": from_date,
-        }
+        params = {"status": status, "from_date": from_date}
         return self.send_request(
             "POST", "GetChangedOrders.xml", params, log_config=log_config
         )
@@ -112,10 +105,7 @@ class CSCWrapper(APIHandler):
         )
 
     def get_available_searches(self, state, is_online, log_config: dict = None):
-        params = {
-            "state": state,
-            "is_online": is_online,
-        }
+        params = {"state": state, "is_online": is_online}
         return self.send_request(
             "POST", "AvailableSearches.xml", params, log_config=log_config
         )

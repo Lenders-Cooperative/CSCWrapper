@@ -3,6 +3,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
+DEFAULT_TIMEOUT = 120
+
 # TODO implement these constants on search
 class SEARCHTYPE(Enum):
     UCC = "UCC"

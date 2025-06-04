@@ -7,6 +7,9 @@
                 <param name="contactNo">{{ contact_no }}</param>
                 <param name="status">{{ status }}</param>
                 <param name="fromDate">{{ from_date }}</param>
+                {% if to_date %}
+                <param name="toDate">{{ to_date }}</param>
+                {% endif %}
             </params>
         </GetChangedOrders>
     </soap:Body>

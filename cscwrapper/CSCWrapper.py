@@ -64,9 +64,9 @@ class CSCWrapper(APIHandler):
         )
 
     def get_changed_orders(
-        self, status, from_date, log_config: dict = None
+            self, status, from_date, to_date = None, log_config: dict = None
     ) -> OrderedDict:
-        params = {"status": status, "from_date": from_date}
+        params = {"status": status, "from_date": from_date, "to_date": to_date}
         return self.send_request(
             "POST", "GetChangedOrders.xml", params, log_config=log_config
         )

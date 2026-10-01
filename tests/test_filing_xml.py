@@ -16,7 +16,7 @@ from cscwrapper.CSCWrapper import CSCWrapper
 def test_debtor_organization_fields_follow_filing_state(
     operation: str, filing_state: str, is_organization: bool
 ) -> None:
-    """Filing XML omits County and accepts any casing of NY for organization tags."""
+    """Filing XML omits County and NY organization attributes for every state casing."""
     is_ny = filing_state in {"NY", "Ny", "ny", "nY"}
     debtor = {
         "mailing_address": "1 Main St Suite 2",
@@ -65,6 +65,7 @@ def test_debtor_organization_fields_follow_filing_state(
         if is_ny:
             assert element is not None
             assert element.text == debtor[key]
+            assert element.attrib == {}
         else:
             assert element is None
     assert names.findtext("MailAddress") == debtor["mailing_address"]

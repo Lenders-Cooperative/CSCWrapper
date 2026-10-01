@@ -41,6 +41,10 @@ requests are intended.
 ## Filing debtor XML
 
 Create and update filing requests omit the empty debtor `County` element.
+NY `OrganizationalType` carries the debtor's organization type as element text,
+without a `Type` attribute. CSC rejected the previous `Type="NOType"` attribute
+in a test-service filing. Removing it changed the validation error, but NY
+provider acceptance remains unconfirmed.
 `OrganizationalType`, `OrganizationalJuris`, and `OrganizationalID` are emitted
 only when `filing_jurisdiction_state` is `NY` (case-insensitive). The comparison
 normalizes the state to uppercase without changing the submitted payload values.

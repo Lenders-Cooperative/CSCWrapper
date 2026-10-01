@@ -66,11 +66,12 @@
                                             <City>{{ debtor.city|default('') }}</City>
                                             <State>{{ debtor.state|default('') }}</State>
                                             <PostalCode>{{ debtor.postal_code|default('') }}</PostalCode>
-                                            <County />
                                             <Country>{{ debtor.country|default('') }}</Country>
-                                            <OrganizationalType Type="NOType">{{ debtor.organization_type|default('') }}</OrganizationalType>
-                                            <OrganizationalJuris>{{ debtor.organization_jurisdiction|default('') }}</OrganizationalJuris>
-                                            <OrganizationalID>{{ debtor.organization_id|default('') }}</OrganizationalID>
+                                            {% if filing_jurisdiction_state == "NY" %}
+                                                <OrganizationalType Type="NOType">{{ debtor.organization_type|default('') }}</OrganizationalType>
+                                                <OrganizationalJuris>{{ debtor.organization_jurisdiction|default('') }}</OrganizationalJuris>
+                                                <OrganizationalID>{{ debtor.organization_id|default('') }}</OrganizationalID>
+                                            {% endif %}
                                         </Names>
                                     </DebtorName>
                                 {% endfor %}

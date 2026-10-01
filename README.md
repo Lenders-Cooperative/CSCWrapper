@@ -28,6 +28,31 @@ pip install cscwrapper
 
 ## Running Tests
 
+Offline XML regression tests mock the transport and do not call CSC:
+
+```
+python -m pytest tests/test_filing_xml.py --count=20
+```
+
+The existing `tests/test_cscwrapper.py` exercises live vendor operations and
+requires a deliberately configured CSC account. Run that suite only when live
+requests are intended.
+
+## Filing debtor XML
+
+Create and update filing requests omit the empty debtor `County` element.
+`OrganizationalType`, `OrganizationalJuris`, and `OrganizationalID` are emitted
+only when `filing_jurisdiction_state` is `NY` (case-insensitive). The comparison
+normalizes the state to uppercase without changing the submitted payload values.
+The filing jurisdiction controls
+this rule, independently of the debtor's mailing-address state.
+
+Reference names are supplied by the caller and must match the CSC account's
+billing-reference configuration. LOS supplies `Application ID` with the loan's
+application number as the value.
+
+## Live tests
+
 ```
 pytest
 ```

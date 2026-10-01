@@ -70,14 +70,15 @@
                                             <City>{{ debtor.city }}</City>
                                             <State>{{ debtor.state }}</State>
                                             <PostalCode>{{ debtor.postal_code }}</PostalCode>
-                                            <County />
                                             <Country>{{ debtor.country }}</Country>
                                             {% if debtor.tax_id is defined %}
                                                 <TaxID>{{ debtor.tax_id }}</TaxID>
                                             {% endif %}
-                                            <OrganizationalType Type="NOType">{{ debtor.organization_type }}</OrganizationalType>
-                                            <OrganizationalJuris>{{ debtor.organization_jurisdiction }}</OrganizationalJuris>
-                                            <OrganizationalID>{{ debtor.organization_id }}</OrganizationalID>
+                                            {% if filing_jurisdiction_state|upper == "NY" %}
+                                                <OrganizationalType Type="NOType">{{ debtor.organization_type }}</OrganizationalType>
+                                                <OrganizationalJuris>{{ debtor.organization_jurisdiction }}</OrganizationalJuris>
+                                                <OrganizationalID>{{ debtor.organization_id }}</OrganizationalID>
+                                            {% endif %}
                                         </Names>
                                     </DebtorName>
                                 {% endfor %}

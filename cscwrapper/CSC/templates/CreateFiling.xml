@@ -75,7 +75,7 @@
                                                 <TaxID>{{ debtor.tax_id }}</TaxID>
                                             {% endif %}
                                             {% if filing_jurisdiction_state|upper == "NY" %}
-                                                <OrganizationalType Type="NOType">{{ debtor.organization_type }}</OrganizationalType>
+                                                <OrganizationalType>{{ debtor.organization_type }}</OrganizationalType>
                                                 <OrganizationalJuris>{{ debtor.organization_jurisdiction }}</OrganizationalJuris>
                                                 <OrganizationalID>{{ debtor.organization_id }}</OrganizationalID>
                                             {% endif %}

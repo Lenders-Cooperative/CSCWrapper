@@ -42,7 +42,9 @@ requests are intended.
 
 Create and update filing requests omit the empty debtor `County` element.
 `OrganizationalType`, `OrganizationalJuris`, and `OrganizationalID` are emitted
-only when `filing_jurisdiction_state` is `NY`. The filing jurisdiction controls
+only when `filing_jurisdiction_state` is `NY` (case-insensitive). The comparison
+normalizes the state to uppercase without changing the submitted payload values.
+The filing jurisdiction controls
 this rule, independently of the debtor's mailing-address state.
 
 Reference names are supplied by the caller and must match the CSC account's

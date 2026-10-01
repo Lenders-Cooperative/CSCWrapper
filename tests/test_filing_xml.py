@@ -9,16 +9,19 @@ from cscwrapper.CSCWrapper import CSCWrapper
 
 
 @pytest.mark.parametrize("operation", ["create", "update"])
-@pytest.mark.parametrize("filing_state", ["WY", "CA", "IL", "NY"])
+@pytest.mark.parametrize(
+    "filing_state", ["WY", "wy", "CA", "IL", "NY", "Ny", "ny", "nY"]
+)
 @pytest.mark.parametrize("is_organization", [False, True])
 def test_debtor_organization_fields_follow_filing_state(
     operation: str, filing_state: str, is_organization: bool
 ) -> None:
-    """Filing XML omits County and limits organization tags to NY filing jurisdiction."""
+    """Filing XML omits County and accepts any casing of NY for organization tags."""
+    is_ny = filing_state in {"NY", "Ny", "ny", "nY"}
     debtor = {
         "mailing_address": "1 Main St Suite 2",
         "city": "Example City",
-        "state": "WY" if filing_state == "NY" else "NY",
+        "state": "WY" if is_ny else "NY",
         "postal_code": "12345",
         "country": "USA",
         "organization_type": "LLC",
@@ -59,7 +62,7 @@ def test_debtor_organization_fields_follow_filing_state(
         ("OrganizationalID", "organization_id"),
     ):
         element = names.find(tag)
-        if filing_state == "NY":
+        if is_ny:
             assert element is not None
             assert element.text == debtor[key]
         else:

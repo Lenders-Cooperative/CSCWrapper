@@ -67,7 +67,7 @@
                                             <State>{{ debtor.state|default('') }}</State>
                                             <PostalCode>{{ debtor.postal_code|default('') }}</PostalCode>
                                             <Country>{{ debtor.country|default('') }}</Country>
-                                            {% if filing_jurisdiction_state == "NY" %}
+                                            {% if filing_jurisdiction_state|upper == "NY" %}
                                                 <OrganizationalType Type="NOType">{{ debtor.organization_type|default('') }}</OrganizationalType>
                                                 <OrganizationalJuris>{{ debtor.organization_jurisdiction|default('') }}</OrganizationalJuris>
                                                 <OrganizationalID>{{ debtor.organization_id|default('') }}</OrganizationalID>
